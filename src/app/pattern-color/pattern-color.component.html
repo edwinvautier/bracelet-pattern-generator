@@ -1,0 +1,9 @@
+<div
+    [style]="'background-color:'+color"
+    class="pattern-color"
+    [(colorPicker)]="color"
+    [cpDisableInput]="false"
+    (colorPickerChange)="updateColor(color)"
+>
+    <mat-icon class="delete-icon" (click)="deleteColor($event)">delete</mat-icon>
+</div>
