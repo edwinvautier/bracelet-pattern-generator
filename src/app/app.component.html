@@ -8,12 +8,13 @@
     <input matInput type="number" [(ngModel)]="pearlNumber" (input)="generateSVG()">
   </mat-form-field>
 
-  <div class="pattern">
+  <div class="pattern" cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
     @for (patternColor of pattern; track $index) {
       <app-pattern-color
       [color]="patternColor"
       (colorChange)="updateColor($index, $event)"
       (delete)="deleteColor($index)"
+      cdkDrag
       ></app-pattern-color>
     }
   </div>

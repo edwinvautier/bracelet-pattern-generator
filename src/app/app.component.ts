@@ -6,11 +6,12 @@ import { PatternColorComponent } from './pattern-color/pattern-color.component';
 import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
+import {CdkDragDrop, CdkDrag, CdkDropList, moveItemInArray} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, FormsModule, PatternColorComponent, MatInputModule, MatIconModule, MatButtonModule],
+  imports: [RouterOutlet, FormsModule, PatternColorComponent, MatInputModule, MatIconModule, MatButtonModule, CdkDrag, CdkDropList],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
@@ -85,6 +86,11 @@ export class AppComponent implements AfterViewInit {
 
   deleteColor(index: number) {
     this.pattern.splice(index, 1);
+    this.generateSVG();
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.pattern, event.previousIndex, event.currentIndex);
     this.generateSVG();
   }
 }
